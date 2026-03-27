@@ -1,5 +1,4 @@
-#ifndef HUFFMAN_H
-#define HUFFMAN_H
+#pragma once
 
 #include <unordered_map>
 #include <vector>
@@ -28,15 +27,15 @@ struct compare
 
 class HuffmanEncoding
 {
-public:
+private:
 	std::unordered_map<char, int> odrediFrekvencije(std::vector<char> text);
 	std::shared_ptr<Node> napraviHuffmanStablo(std::unordered_map<char, int>& frekvencije);
 	void odrediKodove(const std::shared_ptr<Node>& koren, std::string kod, std::unordered_map<char, std::string>& kodovi);
 	std::vector<uint8_t> kodirajTekst(const std::vector<char>& text, std::unordered_map<char, std::string>& kodovi, uint8_t& padding);
 	void napraviStabloString(const std::shared_ptr<Node>& koren, std::string& stabloString);
-	std::vector<uint8_t> kompresujTekst(const std::vector<char>& tekst);
 	std::shared_ptr<Node> ucitajHuffmanStablo(const std::vector<char>& stabloString, int& idx);
+
+public:
+	std::vector<uint8_t> kompresujTekst(const std::vector<char>& tekst);
 	std::vector<uint8_t> dekompresujTekst(const std::vector<char>& ulazniBajtovi);
 };
-
-#endif
